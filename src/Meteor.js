@@ -19,6 +19,8 @@ import Accounts from './user/Accounts';
 
 let unsubscribe;
 
+console.log("started meteor")
+
 module.exports = {
     configureOptionalDeps,
     Accounts,
@@ -161,6 +163,7 @@ module.exports = {
             });
 
             Data.ddp.on('added', (message) => {
+                console.log("added", message)
                 if (!Data.db[message.collection]) {
                     Data.db.addCollection(message.collection);
                 }
@@ -188,6 +191,7 @@ module.exports = {
             });
 
             Data.ddp.on('changed', (message) => {
+                console.log("changed", message)
                 const unset = {};
                 if (message.cleared) {
                     message.cleared.forEach((field) => {

@@ -39,6 +39,8 @@ export class Collection {
     let result;
     let docs;
 
+    if(!selector) selector = {}
+
     if(typeof selector === 'string') {
       selector = { _id: selector }
     }
@@ -71,7 +73,8 @@ export class Collection {
 
   insert(item, callback = ()=>{}) {
     let id;
-
+    
+    console.log("insert", JSON.stringify(item, null, 2))
     if('_id' in item) {
       if(!item._id || typeof item._id != 'string') {
         return callback("Meteor requires document _id fields to be non-empty strings");
@@ -99,6 +102,7 @@ export class Collection {
   }
 
   update(id, modifier, options={}, callback=()=>{}) {
+    console.log("update", id, JSON.stringify(modifier, null, 2))
     if(typeof options == 'function') {
       callback = options;
       options = {};

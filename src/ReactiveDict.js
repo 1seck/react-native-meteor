@@ -24,6 +24,7 @@ export default class ReactiveDict {
     }
 
     set (keyOrObject, value) {
+        console.log("keyOrObject", keyOrObject)
         if ((typeof keyOrObject === 'object') && (value === undefined)) {
             this._setObject(keyOrObject);
             return;
